@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Чек-лист системного трейдера | PRIBYTOK</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Oswald:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #0d0d0d;
+      --card: rgba(18, 18, 18, 0.82);
+      --card-strong: rgba(15, 15, 15, 0.92);
+      --line: rgba(255, 255, 255, 0.09);
+      --text: #f4f0e8;
+      --muted: rgba(244, 240, 232, 0.76);
+      --gold: #e8a838;
+      --gold-2: #f5b731;
+      --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", Arial, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(6,6,6,0.72), rgba(6,6,6,0.82)),
+        url("assets/checklist_bg.jpg") center top / cover fixed no-repeat,
+        #0b0b0b;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 80% 14%, rgba(232, 168, 56, 0.1), transparent 22%),
+        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 100%);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 38px 40px 34px;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(12,12,12,0.94) 0%, rgba(16,16,16,0.86) 54%, rgba(31,24,13,0.74) 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(232,168,56,0.14), transparent 24%),
+        linear-gradient(90deg, rgba(0,0,0,0.12), transparent 40%);
+    }
+
+    .hero-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .hero-copy {
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(58px, 8vw, 96px);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    h1 .accent { color: var(--gold-2); }
+
+    .lead {
+      margin: 0;
+      max-width: 760px;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .brand-side {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      justify-items: end;
+      min-width: 280px;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-box img {
+      display: block;
+      width: 180px;
+      height: auto;
+    }
+
+    .tg-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f5b731 0%, #e8a838 100%);
+      color: #111;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 30px rgba(232,168,56,0.22);
+    }
+
+    .hero-note {
+      position: relative;
+      z-index: 1;
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: rgba(244,240,232,0.84);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .hero-note strong { color: var(--gold-2); }
+
+    .stack {
+      display: grid;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .section,
+    .shot-card,
+    .footer-card {
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(232,168,56,0.08), rgba(255,255,255,0.01));
+    }
+
+    .section-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f6bc41 0%, #e8a838 100%);
+      color: #111;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .items {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 16px;
+      padding: 18px 18px 18px 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .item::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 2px solid var(--gold-2);
+      box-shadow: inset 0 0 0 3px rgba(13,13,13,0.9);
+      background: linear-gradient(180deg, #f5b731 0%, #e8a838 100%);
+    }
+
+    .item h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    .item p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .shot-card {
+      padding: 18px 18px 20px;
+      background: var(--card-strong);
+    }
+
+    .shot-label {
+      margin: 0 0 14px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+    }
+
+    .shot-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #070707;
+    }
+
+    .footer-card {
+      margin-top: 8px;
+      padding: 30px 32px 34px;
+      background:
+        linear-gradient(135deg, rgba(19,19,19,0.96) 0%, rgba(35,27,14,0.84) 100%);
+    }
+
+    .footer-card strong {
+      display: block;
+      margin-bottom: 14px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 36px;
+      line-height: 0.98;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-card p {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.7;
+      color: rgba(244,240,232,0.9);
+    }
+
+    @media (max-width: 960px) {
+      .page {
+        width: min(100%, calc(100% - 24px));
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 24px 22px 24px;
+      }
+
+      .hero-top {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .brand-side {
+        justify-items: start;
+        min-width: 0;
+      }
+
+      .tg-button {
+        width: 100%;
+      }
+
+      .section-head {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <div class="eyebrow">PRIBYTOK / Чек-лист</div>
+          <h1>Системный <span class="accent">трейдер</span></h1>
+          <p class="lead">Этот алгоритм превращает хаос графиков в чёткую математическую модель с вероятностью отработки 70–80%.</p>
+        </div>
+
+        <div class="brand-side">
+          <div class="logo-box">
+            <img src="assets/logo.png" alt="PRIBYTOK logo" />
+          </div>
+          <a class="tg-button" href="https://t.me/pribytoktrading" target="_blank" rel="noopener noreferrer">Переходи в мой Telegram канал</a>
+        </div>
+      </div>
+
+      <div class="hero-note"><strong>База:</strong> сначала собираем систему, потом требуем деньги с рынка.</div>
+    </section>
+
+    <section class="stack">
+      <article class="section">
+        <div class="section-head">
+          <div class="section-index">1</div>
+          <h2 class="section-title">Контекст: метод «Матрешка»</h2>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <h3>Старший таймфрейм — направление «танка»</h3>
+              <p>На H4/D1 смотрим, где находится цена относительно Bollinger Bands: вылет за границы или закрепление за средней линией.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Приоритет — только тренд</h3>
+              <p>Контртренд разрешён только при сильной дивергенции и подтверждённом вылете на старшем таймфрейме.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shot-card">
+        <div class="shot-label">Скрин 1 / Контекст и импульс</div>
+        <img src="screenshots/1.jpg" alt="Скриншот 1" />
+      </article>
+
+      <article class="section">
+        <div class="section-head">
+          <div class="section-index">2</div>
+          <h2 class="section-title">Поиск зоны интереса</h2>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <h3>Сетка Фибоначчи</h3>
+              <p>Натягиваем сетку на импульс старшего таймфрейма. Работаем только от расчётной структуры, а не по ощущению.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Правило «0 на хвост, 100 на тело»</h3>
+              <p>Уровень 0 ставим на тень свечи, уровень 100 — на тело пробивной свечи. Так зона получается рабочей, а не «нарисованной для красоты».</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Ожидание коррекции</h3>
+              <p>Ждём, когда цена придёт в расчётные уровни 161.8, 261.8 или 423.6. Никакой спешки до прихода в зону.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <div class="section-head">
+          <div class="section-index">3</div>
+          <h2 class="section-title">Сигнал: спусковой крючок</h2>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <h3>Младший таймфрейм — только в зоне</h3>
+              <p>На M15 / M5 / M1 внутри ЗИ ждём СКУ или паттерн поглощения. Без зоны младший таймфрейм нас не интересует.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Подвал должен созреть</h3>
+              <p>AO должен сменить цвет, а розовая MA — пересечь синюю линию MACD. Это фильтр, который отделяет рабочую картинку от шума.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Усилитель — дивергенция</h3>
+              <p>Если на M1 / M5 есть дивергенция, значит у движения заканчивается топливо. Это повышает качество точки входа.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shot-card">
+        <div class="shot-label">Скрин 2 / Зона интереса и созревание сигнала</div>
+        <img src="screenshots/2.jpg" alt="Скриншот 2" />
+      </article>
+
+      <article class="section">
+        <div class="section-head">
+          <div class="section-index">4</div>
+          <h2 class="section-title">Исполнение и риск</h2>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <h3>Точка входа</h3>
+              <p>Либо входим всем объёмом от уровня 100, либо дробим позицию «патронами»: часть от 100 и добор на откате в зону 50–61.8.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Железный риск</h3>
+              <p>Не более 1% на сделку. Получили стоп — закрыли и забыли, не мстим рынку и не пытаемся отыграться.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Стоп-лосс</h3>
+              <p>Ставим за уровень 0 или за -0.38 по Фибоначчи. Стоп должен быть системным, а не «куда не жалко».</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shot-card">
+        <div class="shot-label">Скрин 4 / Вход и цели</div>
+        <img src="screenshots/4.jpg" alt="Скриншот 4" />
+      </article>
+
+      <article class="section">
+        <div class="section-head">
+          <div class="section-index">5</div>
+          <h2 class="section-title">Фиксация прибыли</h2>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div>
+              <h3>Цели по Фибо</h3>
+              <p>161.8 — сейф и частичная фиксация, 261.8 — основная цель, 423.6 — бонус, если рынок действительно даёт движение.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <h3>Дисциплина выхода</h3>
+              <p>Дали прибыль — забрали. Не жадничаем и не пытаемся выжать из рынка максимум в каждой сделке.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="footer-card">
+        <strong>Главная мантра</strong>
+        <p>«Быстро — это медленно, но каждый день». Сначала разбогатей в тестере, наработай моторику биоробота, и только потом забирай деньги с реального рынка.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
