@@ -311,6 +311,83 @@
       color: rgba(244,240,232,0.9);
     }
 
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 8px;
+      padding: 38px 34px 40px;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(135deg, rgba(15,15,15,0.97) 0%, rgba(21,21,21,0.9) 58%, rgba(38,28,12,0.82) 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .video-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(232,168,56,0.14), transparent 22%),
+        linear-gradient(90deg, rgba(0,0,0,0.08), transparent 40%);
+    }
+
+    .video-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-card strong {
+      display: block;
+      margin-bottom: 16px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: 34px;
+      line-height: 0.98;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gold-2);
+    }
+
+    .video-card h2 {
+      margin: 0 0 20px;
+      font-family: "Oswald", Impact, sans-serif;
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .video-card h2 .accent {
+      color: var(--gold-2);
+    }
+
+    .video-card p {
+      max-width: 980px;
+      margin: 0 0 18px;
+      font-size: 22px;
+      line-height: 1.7;
+      color: rgba(244,240,232,0.88);
+    }
+
+    .video-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f5b731 0%, #e8a838 100%);
+      color: #111;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 32px rgba(232,168,56,0.22);
+    }
+
     @media (max-width: 960px) {
       .page {
         width: min(100%, calc(100% - 24px));
@@ -504,6 +581,14 @@
       <article class="footer-card">
         <strong>Главная мантра</strong>
         <p>«Быстро — это медленно, но каждый день». Сначала разбогатей в тестере, наработай моторику биоробота, и только потом забирай деньги с реального рынка.</p>
+      </article>
+
+      <article class="video-card">
+        <strong>Финальный шаг</strong>
+        <h2>Знать алгоритм — это <span class="accent">10%</span> успеха. Следовать ему каждый день — <span class="accent">90%</span>.</h2>
+        <p>На бумаге всё выглядит логично. Но когда ты остаёшься один на один с терминалом, начинаются эмоции, ранние входы и нарушение рисков.</p>
+        <p>Я записал короткое видео, где показываю, как мы внедряем эту систему на практике. Ты увидишь изнутри, как выглядит процесс превращения в «биоробота», как мы разбираем ошибки и почему дисциплина работает лучше удачи.</p>
+        <a class="video-button" href="https://t.me/Pribytok_tradingbot?start=bfe018ca" target="_blank" rel="noopener noreferrer">Смотреть видео: система «Разборок с трейдингом»</a>
       </article>
     </section>
   </main>
