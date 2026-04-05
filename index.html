@@ -143,6 +143,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
       min-height: 58px;
       padding: 0 22px;
       border-radius: 999px;
@@ -154,6 +155,19 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       box-shadow: 0 14px 30px rgba(232,168,56,0.22);
+    }
+
+    .brand-links {
+      display: grid;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .link-button-secondary {
+      background: rgba(255,255,255,0.05);
+      color: #f4f0e8;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: none;
     }
 
     .hero-note {
@@ -432,10 +446,12 @@
           <div class="logo-box">
             <img src="assets/logo.png" alt="PRIBYTOK logo" />
           </div>
-          <a class="tg-button" href="https://t.me/pribytoktrading" target="_blank" rel="noopener noreferrer">Переходи в мой Telegram канал</a>
+          <div class="brand-links">
+            <a class="tg-button" href="https://t.me/pribytoktrading" target="_blank" rel="noopener noreferrer">Переходи в мой Telegram канал</a>
+            <a class="tg-button link-button-secondary" href="https://www.instagram.com/pribytok?igsh=dnU2YzVtdnVuZDNn" target="_blank" rel="noopener noreferrer">Мой Instagram</a>
+            <a class="tg-button link-button-secondary" href="https://pribytokbaza.tilda.ws/" target="_blank" rel="noopener noreferrer">Мой бесплатный курс по трейдингу</a>
+          </div>
         </div>
-      </div>
-
       <div class="hero-note"><strong>База:</strong> сначала собираем систему, потом требуем деньги с рынка.</div>
     </section>
 
